@@ -9,7 +9,14 @@ class Solution(object):
 
         return True
 
+    def printPrime(self,n):
+        i=2
+        while i<=n:
+            if self.isPrime(i)==True:
+                print i,
+            i+=1
+
 if __name__ == "__main__":
-    integer = 46
+    n = 200
     answer = Solution()
-    print answer.isPrime(integer)
+    print answer.printPrime(n)
