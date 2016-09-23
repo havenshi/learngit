@@ -6,15 +6,16 @@ class Solution(object):
                 return False
             else:
                 i+=1
-
         return True
 
     def printPrime(self,n,m):
+        list=[]
         i=n
         while i<=m:
-            if self.isPrime(i)==True:
-                print i,
+            if self.isPrime(i):
+                list.append(i)
             i+=1
+        return list
 
 if __name__ == "__main__":
     n = 100
