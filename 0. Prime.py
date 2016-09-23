@@ -9,14 +9,15 @@ class Solution(object):
 
         return True
 
-    def printPrime(self,n):
-        i=2
-        while i<=n:
+    def printPrime(self,n,m):
+        i=n
+        while i<=m:
             if self.isPrime(i)==True:
                 print i,
             i+=1
 
 if __name__ == "__main__":
-    n = 200
+    n = 100
+    m = 200
     answer = Solution()
-    print answer.printPrime(n)
+    print answer.printPrime(n,m)
