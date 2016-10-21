@@ -10,13 +10,15 @@ class Solution(object):
             bisect.insort(nums1, nums2[i])
 
         if len(nums1)%2==0:
-            return float((nums1[(len(nums1))/2-1]+nums1[(len(nums1))/2])/2.0)
+            a=(nums1[(len(nums1))/2-1]+nums1[(len(nums1))/2])/2.00
+            return '%.5f'% a
         else:
-            return nums1[(len(nums1)-1)/2]/1.0
+            a=nums1[(len(nums1)-1)/2]
+            return '%.1f' % a
 
 
 if __name__=="__main__":
     answer=Solution()
-    nums1=[1,3]
-    nums2=[2]
+    nums1=[1,2]
+    nums2=[3,4]
     print answer.findMedianSortedArrays(nums1,nums2)

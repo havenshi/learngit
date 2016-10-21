@@ -1,31 +1,34 @@
 class Solution(object):
     def isValid(self, s):
         """
-        list = []
-        l=["(","[","{"]
-        n=[")","]","}"]
-        issy=True
-
+        :type s: str
+        :rtype: bool
+        """
         if len(s) == 0:
             return False
 
-        i=0
-        while i<len(s) and issy:
-             if s[i] in l:
+        list = []
+        l = ["(", "[", "{"]
+        n = [")", "]", "}"]
+        issy = True
+
+        i = 0
+        while i < len(s) and issy:
+            if s[i] in l:
                 list.append(s[i])
-             elif len(list)!=0:
-                firsti=list[-1]
-                if l.index(firsti)==n.index(s[i]):
+            elif len(list) != 0:
+                firsti = list[-1]
+                if l.index(firsti) == n.index(s[i]):
                     del list[-1]
                 else:
-                    issy=False
-             else:
-                 issy=False
+                    issy = False
+            else:
+                issy = False
 
-             i+=1
+            i += 1
 
-        if len(list)!=0:
-            issy=False
+        if len(list) != 0:
+            issy = False
 
         return issy
 
