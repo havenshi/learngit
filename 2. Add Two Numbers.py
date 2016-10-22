@@ -11,24 +11,25 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        i=1
-        total=0
-        while i<=100:
-            a=l1.val
-            b=l2.val
-            total+=i*(a+b)
-            l1=l1.next
-            l2=l2.next
-            i*=10
+        head = ListNode(0)
+        ptr = head
+        carry  = 0
+        while True:
+            if l1 != None:
+                carry += l1.val
+                l1 = l1.next
+            if l2 != None:
+                carry += l2.val
+                l2 = l2.next
+            ptr.val = carry % 10
+            carry /= 10
 
-        newl=ListNode(total%10)
-        total//=10
-        newl2 = ListNode(total % 10)
-        total //= 10
-        newl3 = ListNode(total % 10)
-        newl.next = newl2
-        newl2.next = newl3
-        return [newl.val]+[newl.next.val]+[newl.next.next.val]
+            if l1 != None or l2 != None or carry != 0:
+                ptr.next = ListNode(0)
+                ptr = ptr.next
+            else:
+                break
+        return head
 
 if __name__ == "__main__":
     answer = Solution()
