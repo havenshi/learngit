@@ -1,4 +1,10 @@
-# Judgment of the triangle
+# The password generated
 
-a=5,b=7,c=10
-print sorted([a,b,c])[0] + sorted([a,b,c])[1] > sorted([a,b,c])[2] and 'YES' or 'NO'
+def pow_mod(a,n,mod):
+    res = 1
+    while n > 0 :
+        if n % 2 == 1: res = res * a % mod
+        a = a * a % mod
+        n >>= 1
+    return res
+print pow_mod(3,3,20132013)
