@@ -17,9 +17,14 @@ class Solution(object):
                         res[i][j]=j
                     if (j-nums[i - 1])>0 and (j-nums[i - 1]) not in res[i-1]: # if j-nums[i - 1] is not 0, copy left of this line
                         res[i][j]=res[i][j-1]
-            return res
-
+            # now res is [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2], [0, 0, 2, 2, 4, 4, 4, 4, 4, 4, 4], [0, 0, 2, 2, 4, 5, 5, 7, 7, 9, 9], [0, 0, 2, 2, 4, 5, 5, 7, 7, 9, 10], [0, 0, 2, 2, 4, 5, 6, 6, 8, 8, 10]]
+            matrix=[]
+            for i in range(1, n + 1):
+                matrix+=res[i]
+            return total in matrix
 if __name__ == "__main__":
     nums = [2, 5, 2, 6, 5]
+    nums2=[1,5,5,12]
     answer = Solution()
     print answer.split(nums)
+    print answer.split(nums2)
