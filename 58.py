@@ -18,25 +18,3 @@ for m in range(max,min,-1):
             break
 print lcm
 
-
-def lcm(a, b):
-    if a < b:
-        a = a ^ b;
-        b = a ^ b;
-        a = a ^ b
-    x = a;
-    y = b
-    while (y != 0):
-        t = y
-        y = x % y
-        x = t
-    return (a * b / x)
-
-
-def xxoo(L1, last):
-    if len(L1) == 1:
-        return lcm(L1[0], last)
-    return lcm(xxoo(L1[0:-1], L1[-1]), last)
-
-
-print xxoo(L[0:-1], L[-1])
