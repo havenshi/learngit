@@ -1,3 +1,4 @@
+# A square joining together
 class Solution(object):
     def removeoneside(self,nums,i):
         total = sum(nums)/i
