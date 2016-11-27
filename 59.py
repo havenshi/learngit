@@ -1,53 +1,38 @@
-# A square joining together
+class Solution(object):
+    def removeoneside(self,nums,i):
+        total = sum(nums)/i
+        n=len(nums)
+        res = [[0 for j in range(total + 1)] for i in range(n + 1)]
+        # res[i][j] = max(res[i - 1][j],res[i-1][j-nums[i-1]]+nums[i-1])
+        for i in range(1, n + 1):
+            for j in range(1, total + 1):
+                res[i][j] = res[i - 1][j] # copy the last line
+                if j>=nums[i - 1] and (res[i-1][j-nums[i-1]]+nums[i-1])>res[i - 1][j]: # greater than
+                    res[i][j]=res[i-1][j-nums[i-1]]+nums[i-1]
 
-def makesquare(lst):
-    num = sum(lst) // 4
-    if len(lst) < 4 or num * 4 != sum(lst):
-        return False
-    for _ in range(3):
-        return_lst = canmakenumber(lst, num)
-        if return_lst is False:
-            return False
-        for i in return_lst:
-            lst.remove(i)
-    return True
+                if res[i][j]==total: # the first side appears, then stop
+                    while i>=1 and j>=0: # if greater than, remove item from nums list, if not, move to upper line
+                        if j>=nums[i - 1] and (res[i-1][j-nums[i-1]]+nums[i-1])>res[i - 1][j]:
+                            j-=nums[i - 1]
+                            nums.remove(nums[i - 1])
+                        i-=1
+                    return nums
 
+    def square(self,list):
+        list = sorted(list)
+        for i in range(4,0,-1):
+            total = sum(list)
+            if total % i != 0:
+                return "No"
+            else:
+                self.removeoneside(list,i) # remove 4 sides
 
-def canmakenumber(lst, num):
-    b = [0] * num
-    b2 = [0] * num
-    can_make = False
-    for pos, i in enumerate(lst):
-        for j in b:
-            if j != 0 and j-1+i < num:
-                b2[j-1+i] = b[j-1] + i
-            if b2[num-1] != 0:
-                can_make = True
-                break
-        b2[i - 1] = i
-        b = b2[:]
-        if can_make:
-            bb = findthesticks(b, lst[:pos+1])
-            break
-    if can_make:
-        return bb
-    return False
+        if list==[]:
+            return "Yes"
+        else:
+            return "No"
 
-
-def findthesticks(lst, input_stick):
-    return_lst = []
-    # print input_stick
-    # print lst
-    pos = len(lst) -1
-    for i in input_stick[::-1]:
-        if lst[pos] in input_stick:
-            return_lst.append(lst[pos])
-            break
-        elif lst[pos - i] != 0:
-            return_lst.append(i)
-            pos -= i
-    return return_lst
-
-
-
-print makesquare([6,3,3,2,2,5,2,2,5,5,10])
+if __name__ == "__main__":
+    list = [2, 5, 2, 6, 5, 2, 5, 2, 6, 1, 4]
+    answer = Solution()
+    print answer.square(list)
