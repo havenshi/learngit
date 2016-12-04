@@ -11,11 +11,14 @@ class Solution(object):
                     res[i][j]=res[i-1][j-nums[i-1]]+nums[i-1]
 
                 if res[i][j]==side: # the first side appears, then stop
+                    eachside=[]
                     while i>=1 and j>=0: # if greater than, remove item from nums list, if not, move to upper line
                         if j>=nums[i - 1] and (res[i-1][j-nums[i-1]]+nums[i-1])>res[i - 1][j]:
                             j-=nums[i - 1]
+                            eachside.append(nums[i - 1])
                             nums.remove(nums[i - 1])
                         i-=1
+                    print eachside
                     break
             else: continue
             break    # Jump out of the multilayer circulation
@@ -38,6 +41,7 @@ class Solution(object):
             return "No"
 
 if __name__ == "__main__":
-    lister = [1,1,1,1,4]
+    lister = [1, 2, 3, 4, 5, 6, 7, 8, 9, 5, 32, 4, 32, 2, 34, 4, 3, 43, 43, 2, 2, 34, 43, 2, 34, 43, 2, 34, 43, 24, 3, 24, 32,
+       3, 21, 64, 6, 5, 5, 3]
     answer = Solution()
     print answer.square(lister)
