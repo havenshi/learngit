@@ -15,7 +15,7 @@ while queue != []:
     for item in horse:
         arrow = ((item[0] + base[0]), (item[1] + base[1]))
         if 0 <= arrow[0] <= m and 0 <= arrow[1] <= n and (not arrow in goal):
-            goal[arrow] = goal[base] + 1
+            goal[arrow] = goal[base] + 1  # how many steps
             queue.append(arrow)
             if arrow == (m, n):
                 break
@@ -24,3 +24,4 @@ if (m, n) in goal:
     print goal[(m, n)]
 else:
     print -1
+print goal
