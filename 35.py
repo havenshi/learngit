@@ -13,3 +13,16 @@ for i in L:
     max_sum = max(max_sum, tmp)
 
 print max_sum
+
+
+# my method
+maxim=0
+sum=0
+for i in range(len(L)):
+    if L[i]<0:
+        maxim=max(sum,maxim)
+        sum=0
+    else:
+        sum+=L[i]
+
+print max(sum,maxim) # don't forget the last one
