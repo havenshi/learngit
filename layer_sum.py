@@ -1,7 +1,6 @@
-LIST = [1, [2, [3, 4], 5], 6, [7, [8]]]
+LIST = [1, [2, [3, 4], 5], 6, [7, 8]]
 
-map = {}
-def layer_sum(L,layer=1):
+def layer_sum(L,layer=1,map = {}):
     for i in range(len(L)):
         if type(L[i])==type(1):
             if layer in map:
