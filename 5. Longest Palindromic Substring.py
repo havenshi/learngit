@@ -4,69 +4,59 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        long=""
-        temp=""
-        i=0
-        gap = 2
-        gap2=1
+        if len(self.longesteven(s)) > len(self.longestodd(s)):
+            return self.longesteven(s)
+        else:
+            return self.longestodd(s)
 
-        if len(s)==1:
-            return s
+    def longesteven(self, s):
+        start1, start2, length1, length2 = 0, 0, 1, 1
+        length, start= 1, 0
+        for i in range(0, len(s) - 1):
+            if s[i] == s[i + 1]:
+                length1=2
+                start1=i
+                ss = min(len(s[:i + 1]), len(s[i + 1:]))
+                a, b = 1, 1
+                while a < ss:
+                    if s[i - a] == s[i + 1 + a]:  # to the left 1 pace, to the right 1 pace
+                        b += 1  # use b to calculate length
+                        start1 = i + 1 - b  # start = left
+                        length1 = b * 2  # length = from left to right
+                    else:
+                        break
+                    a += 1  # use a to count
 
-        while i < len(s)-gap:
-            if s[i] == s[i+gap]:
-                temp=s[i:i+gap+1]
-                ii=i
-                ii-=1
-                gap+=2
+            if length1>length:
+                length=length1
+                start=start1
+        return s[start:start + length]
 
-                while 0<=ii<len(s)-gap and s[ii] == s[ii+gap]:
-                    temp=s[ii:ii+gap+1]
-                    ii -= 1
-                    gap += 2
+    def longestodd(self, s):
+        start1, start2, length1, length2 = 0, 0, 1, 1
+        length, start = 1, 0
+        for i in range(1, len(s) - 1):
+            if s[i - 1] == s[i + 1]:
+                length2=3
+                start2 = i
+                ss = min(len(s[:i]), len(s[i + 1:]))
+                a, b = 1, 0
+                while a <= ss:
+                    if s[i - a] == s[i + a]:
+                        b += 1
+                        start2 = i - b
+                        length2 = b * 2 + 1
+                    else:
+                        break
+                    a += 1
 
-                if len(long)<len(temp):
-                    long=temp
+            if length2 > length:
+                length = length2
+                start = start2
+        return s[start:start + length]
 
-                temp=""
-                i=i+1
-                gap=2
 
-            else:
-                i+=1
-
-        i=0
-
-        while i < len(s) - gap2:
-            if s[i] == s[i+gap2]:
-                temp=s[i:i+gap2+1]
-                ii=i
-                ii-=1
-                gap2+=2
-
-                while 0<=ii<len(s)-gap2 and s[ii] == s[ii+gap2]:
-                    temp=s[ii:ii+gap2+1]
-                    ii -= 1
-                    gap2 += 2
-
-                if len(long)<len(temp):
-                    long=temp
-
-                temp=""
-                i=i+1
-                gap2 = 1
-
-            else:
-                i+=1
-
-        temp=s[0]
-        if len(long) < len(temp):
-            long = temp
-
-        return long
-
-if __name__ == "__main__":
-    answer = Solution()
-    # s="abcbaabcdedcbafghiihgf"
-    s = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+if __name__=="__main__":
+    answer=Solution()
+    s="cbbd"
     print answer.longestPalindrome(s)

@@ -15,8 +15,9 @@ class Solution(object):
             n=x%10
             total=total*10+n
             x=x//10
-
+        if total * a < -(1 << 31) or total * a > (1 << 31) - 1:
+            return 0
         return total*a
 if __name__ == "__main__":
     answer = Solution()
-    print answer.reverse(321)
+    print answer.reverse(-321)
