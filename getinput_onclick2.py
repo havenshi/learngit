@@ -1,11 +1,4 @@
 from Tkinter import *
-import os
-from collections import defaultdict
-from datetime import datetime
-from urllib   import urlretrieve
-from urlparse import urljoin
-from zipfile  import ZipFile
-
 class HavenButtons:
     def __init__(self,master):
         frame=Frame(master)
