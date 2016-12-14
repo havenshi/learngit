@@ -1,4 +1,5 @@
 from Tkinter import *
+from test import flighttime_module as fm
 class HavenButtons:
     def __init__(self,master):
         frame=Frame(master)
@@ -38,7 +39,8 @@ class HavenButtons:
         self.quitButton.grid(row=6, column=1, columnspan=2)
 
     def printMessage(self):
-        print [self.entry_1.get(), self.entry_2.get(), self.entry_3.get(), self.entry_4.get()]
+        s=fm.flightTime()
+        print s.ft(self.entry_1.get(), self.entry_2.get(), self.entry_3.get(), self.entry_4.get())
 
 root = Tk()
 b=HavenButtons(root)

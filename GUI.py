@@ -120,9 +120,17 @@ from Tkinter import *
 # root.mainloop()
 
 
-# Lesson 9
+# Lesson 12
+from Tkinter import *
+import tkMessageBox
+
 root = Tk()
 
+tkMessageBox.showinfo("Window Title", "Mountian is high.")
 
+answer=tkMessageBox.askquestion("Question 1", "Do you like fruit?")
+
+if answer == "yes":
+    print("  ^_^  ")
 
 root.mainloop()
