@@ -41,7 +41,6 @@ class Solution(object):
             return "No"
 
 if __name__ == "__main__":
-    lister = [1, 2, 3, 4, 5, 6, 7, 8, 9, 5, 32, 4, 32, 2, 34, 4, 3, 43, 43, 2, 2, 34, 43, 2, 34, 43, 2, 34, 43, 24, 3, 24, 32,
-       3, 21, 64, 6, 5, 5, 3]
+    lister = [5,5,5,5,4,4,4,4,3,3,3,3]
     answer = Solution()
     print answer.square(lister)

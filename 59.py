@@ -34,6 +34,6 @@ class Solution(object):
             return "No"
 
 if __name__ == "__main__":
-    list = [2, 5, 2, 6, 5, 2, 5, 2, 6, 1, 4]
+    list = [3,3,3,3,4]
     answer = Solution()
     print answer.square(list)
