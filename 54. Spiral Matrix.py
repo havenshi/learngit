@@ -40,6 +40,7 @@ class Solution(object):
 
         else:
             return []
+
 if __name__ == "__main__":
     answer=Solution()
     print answer.spiralOrder([[1,2,3],
