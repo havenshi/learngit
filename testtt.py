@@ -1,46 +1,45 @@
-class Solution(object):
-    def spiralOrder(self, matrix):
-        """
-        :type matrix: List[List[int]]
-        :rtype: List[int]
-        """
-        begin=0
-        m=len(matrix)-1
-        if m<0:
-            return []
+# -*- coding: utf-8 -*-
+def opOrder(op1,op2):  # 当新元素是)，或者stack里的元素优先度高
+    order_dic = {'*':3,'/':3,'+':2,'-':2}
+    if op1 == '(' or op2 == '(':
+        return False
+    elif op2 == ')': # 此时需要把)之前的符号pop出来
+        return True
+    else:
+        if order_dic[op1] < order_dic[op2]:
+            return False
         else:
-            n = len(matrix[0])-1
-            return self.rotate(matrix,begin,m,n)
-
-    def rotate(self,l,start,end1,end2):
-        r = []
-        if end1!=end2:
-            if start==end1 and start!=end2:
-                for y in range(start,end2+1):
-                    r.append(l[start][y])
-            else:
-                for x in range(start,end1+1):
-                  r.append(l[x][start])
-        if end1==end2:
-            if start==end1:
-                r.append(l[start][start])
-            else:
-                r=r+[l[start][start]]+[l[start][end1]]+[l[end1][start]]+[l[end1][end1]]
+            return True # )之前的较高优先度的符号pop出来
+def infixToPrefix(string):
+    string=string.split()
+    prefix = ''
+    stack = []
+    string_tmp = ''
+    for s in string[::-1]:
+        if s == '(':
+            string_tmp += ')'
+        elif s == ')':
+            string_tmp += '('
         else:
-            for y in range(start,end2+1):
-                r.append(l[start][y])
-            for x in range(start+1,end1+1):
-                r.append(l[x][end2])
-            for y in range(end2-1,start-1,-1):
-                r.append(l[end1][y])
-            for x in range(end1-1,start+1-1,-1):
-                r.append(l[x][start])
-            r=r+self.rotate(l, start+1, end1-1, end2-1)
-        return r
+            string_tmp += s    # reverse string
+    for s in string_tmp:
+        if s.isalpha():
+            prefix = s + prefix  # 往前加
+        else:
+            while len(stack) and opOrder(stack[-1],s): # stack里有元素，且优先度较高，则加入prefix之前
+                op = stack.pop()
+                prefix = op + prefix
+            if len(stack) == 0 or s != ')': # 只要不是)的符号都往里加
+                stack.append(s)
+            else:                           # 如果stack有元素(，且s为),pop
+                stack.pop()
+    if len(stack):
+        prefix = ''.join(stack) + prefix
+    return " ".join(prefix)
 
-if __name__ == "__main__":
-    answer=Solution()
-    print answer.spiralOrder([
- [ 1, 2],
- [ 3, 4 ]
-])
+print(infixToPrefix("A * B + C * D"))
+print(infixToPrefix("( A + B ) * C - ( D - E ) * ( F + G )"))
+print(infixToPrefix("( A + B ) * C - ( D - E ) * ( F + G ) - H * I"))
+print(infixToPrefix("( A + B ) * ( C + D + D )"))
+print(infixToPrefix("A + B + C + D"))
+print(infixToPrefix("A + B + C * D"))
