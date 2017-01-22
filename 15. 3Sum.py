@@ -22,11 +22,9 @@ class Solution(object):
         mylist=[]
         if len(nums)<3:
             return []
-        elif list(set(nums)) == [0]:
-            return [[0,0,0]]
         else:
             for i in range(len(nums)):
-                if nums[i] == nums[i-1]:
+                if i != 0 and nums[i] == nums[i-1]:
                     continue
                 target = nums[i]*(-1)
                 left, right = i+1, len(nums)-1

@@ -15,16 +15,16 @@ class Solution(object):
         if len(digits) == 0:
             return []
         elif len(digits) == 1:
-            mylist = []
-            for i in map[digits]:
-                mylist.append(i)
-            return mylist
+            return map[digits]
         else:
-            newlist = []
-            for i in map[digits[0]]:
-                for j in self.letterCombinations(digits[1:]):
-                    newlist.append(i+j)
-            return newlist
+            # newlist = []
+            # for i in map[digits[0]]:
+            #     for j in self.letterCombinations(digits[1:]):
+            #         newlist.append(i+j)
+            # return newlist
+            prev = map[digits[0]]
+            addi = self.letterCombinations(digits[1:])
+            return [a + b for a in prev for b in addi]
 
 if __name__ == "__main__":
     answer=Solution()

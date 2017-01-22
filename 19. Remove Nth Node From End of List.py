@@ -28,3 +28,21 @@ class ListNode(object):
         return res.next
 
 
+        # method 2
+        # temp = head
+        # count = 0
+        # while temp != None:
+        #     count += 1
+        #     temp = temp.next   # size is 5
+        #
+        # revcount = count - n   # remove second node from the end, 5-2=3, need to across 3 node
+        #
+        # count = 1
+        # prev = None
+        # current = head
+        # while count <= revcount:
+        #     prev = current
+        #     current = current.next
+        #     count += 1               # current is 4, the node to remove
+        #
+        # previous.setNext(current.getNext())  # remove

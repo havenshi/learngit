@@ -32,3 +32,27 @@ if __name__ == "__main__":
     answer = Solution()
     s="c"
     print answer.lengthOfLongestSubstring(s)
+
+
+
+# my method
+def lengthOfLongestSubstring(s):
+    l=[]
+    start=0
+    end=0
+    for i in range(1,len(s)):
+        if s[i] not in s[start:end+1]:
+            end += 1
+        else:
+            l.append(s[start:end+1])
+            start=i
+            end=i
+
+    m=len(l[0])
+    for item in l[1:]:
+        if len(item)>m:
+            m=len(item)
+
+    return m
+
+print lengthOfLongestSubstring("abcabcbb")

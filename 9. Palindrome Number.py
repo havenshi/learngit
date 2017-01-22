@@ -12,7 +12,7 @@ class Solution(object):
             pal=True
             i=0
 
-            while i < len(y) and pal:
+            while i < len(y)/2 and pal:
                 if y[i]==y[len(y)-1-i]:
                     i+=1
                 else:

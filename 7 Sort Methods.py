@@ -132,7 +132,7 @@ def merge(left,right):
 print merge_sort([1,3,2,5,6,4])
 
 
-# 六、快速排序 QuickSort，时间复杂度O(nlogn)
+# 六、快速排序 QuickSort，时间复杂度O(nlogn)~O(n2)
 # 从数列中挑出一个元素作为基准数。
 # 分区过程，将比基准数大的放到右边，小于或等于它的数都放到左边。
 # 再对左右区间递归执行第二步，直至各区间只有一个数。
@@ -193,3 +193,5 @@ print heap_sort([1,3,2,5,6,4])
 
 
 # 来源http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/
+
+# https://cnbin.github.io/blog/2015/12/10/ji-chong-pai-xu-yi-ji-qi-shi-jian-fu-za-du/

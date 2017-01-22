@@ -13,7 +13,7 @@ class Solution(object):
         """
         head = ListNode(0)
         ptr = head
-        carry  = 0
+        carry = 0
         while True:
             if l1 != None:
                 carry += l1.val

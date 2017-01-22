@@ -1,36 +1,17 @@
 # -*- coding: utf-8 -*-
-from pythonds.basic.stack import Stack
-# 中缀转后缀
-def infixToPostfix(infixexpr):
-    prec = {}
-    prec["*"] = 3
-    prec["/"] = 3
-    prec["+"] = 2
-    prec["-"] = 2
-    prec["("] = 1
-    opStack = Stack()
-    postfixList = []
-    tokenList = (infixexpr.split())[::-1]
-
-    for token in tokenList:
-        if token in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" or token in "0123456789":
-            postfixList.append(token)
-        elif token == '(':
-            opStack.push(token)
-        elif token == ')':
-            topToken = opStack.pop()
-            while topToken != '(':
-                postfixList.append(topToken)
-                topToken = opStack.pop()
-        else:
-            while (not opStack.isEmpty()) and \
-               (prec[opStack.peek()] >= prec[token]):
-                  postfixList.append(opStack.pop())
-            opStack.push(token)
-
-    while not opStack.isEmpty():
-        postfixList.append(opStack.pop())
-    return " ".join(postfixList)
-
-print(infixToPostfix("A * B + C * D"))
-print(infixToPostfix("( A + B ) * C - ( D - E ) * ( F + G )"))
+# 6 5 4 8 7 5 1
+#首先肯定从后面开始看,1和5调换了没有用。
+#
+#7、5和1调换了也没有效果,因此而发现了8、7、5、1是递减的。
+#
+#如果想要找到下一个排列,找到递增的位置是关键。
+#
+#因为在这里才可以使其增长得更大。
+#
+#于是找到4了,显而易见4过了是5而不是8或者7更不是1。
+#
+#因此就需要找出比4大但在这些大数里面最小的值,并将其两者调换。
+#
+#那么整个排列就成了:6 5 5 8 7 4 1
+#
+#然而最后一步将后面的8 7 4 1做一个递增。

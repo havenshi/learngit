@@ -45,4 +45,4 @@ class Solution(object):
 
 if __name__ == "__main__":
     answer=Solution()
-    print answer.fourSum([-1, 2, 1, -4],1)
+    print answer.fourSum([1,1,-1,-1],0)
