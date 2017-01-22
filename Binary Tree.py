@@ -52,7 +52,7 @@ class TreeNode:
         self.leftChild = lc
         self.rightChild = rc
         if self.hasLeftChild():
-            self.leftChild.parent = self
+            self.leftChild.parent = self  # point parent of left to self
         if self.hasRightChild():
             self.rightChild.parent = self
 
