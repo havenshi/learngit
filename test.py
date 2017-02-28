@@ -1,12 +1,11 @@
-class ListNode(object):
-    def __init__(self, x):
-        self.val = x
-        self.next = None
-
-if __name__ == '__main__':
-    l = ListNode(0)
-    cur = l
-    for i in range(1,10+1):
-        cur.next = ListNode(i)
-        cur = cur.next
-        print cur.val
+def swaptree(self, root):
+    """
+    :type root: TreeNode
+    :rtype: bool
+    """
+    if root.left == None and root.right == None:
+        return root
+    else:
+        root.left.val, root.right.val = root.right.val, root.left.val
+        self.swaptree(root.left)
+        self.swaptree(root.right)
