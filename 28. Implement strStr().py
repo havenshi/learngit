@@ -36,4 +36,4 @@ class Solution(object):
 
 if __name__ == "__main__":
     answer=Solution()
-    print answer.strStr("a","")
+    print answer.strStr("bbab","bab")

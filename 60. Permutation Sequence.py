@@ -27,16 +27,18 @@ class Solution(object):
     # method 2
     # if n=3, we have (3-1)! start with 1/2/3, and for 1/2/3+left part, left part have (2-1)! start with what is left
     # check the region that the sequence number falls in and get the starting digit
-        elements = range(1, n + 1)
+        elements = range(1, n + 1)  # [1,2,3]
         NN = reduce(lambda x, y: x * y, elements)  # n!
         k, result = k - 1, ''  # k is starting digit
         while len(elements) > 0:
             NN = NN / len(elements)  # the length of  the remain part, NN / len(elements)=(n-1)!
+            print NN,k
             i, k = k / NN, k % NN    # i is index of the value of this loop, k is how many k left
+            print elements,i,k
             result += str(elements.pop(i)) # delete the used item from element
         return result
 
 
 if __name__ == "__main__":
     answer=Solution()
-    print repr(answer.getPermutation(3,5))
+    print repr(answer.getPermutation(3,6))

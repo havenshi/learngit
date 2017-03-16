@@ -44,13 +44,13 @@ class Solution(object):
 
         if m < 2 or n < 2: return sum([sum(i) for i in grid])  # single row or column
 
-        for i in xrange(1, m):             # set first column
+        for i in range(1, m):             # set first column
             grid[i][0] += grid[i - 1][0]
-        for i in xrange(1, n):             # set first row
+        for i in range(1, n):             # set first row
             grid[0][i] += grid[0][i - 1]
 
-        for i in xrange(1, m):
-            for j in xrange(1, n):
+        for i in range(1, m):
+            for j in range(1, n):
                 grid[i][j] += grid[i - 1][j] if grid[i - 1][j] < grid[i][j - 1] else grid[i][j - 1]
 
         return grid[-1][-1]
