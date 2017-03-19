@@ -1,4 +1,5 @@
 def answer(array):
+
     result = [i for i in array if i%3 ==0]
     list1 = [i for i in array if i % 3 == 1]
     list2 = [i for i in array if i % 3 == 2]
@@ -25,7 +26,7 @@ def answer(array):
     triple2 = len(list2) / 3
     newlist2 = list2[:triple2 * 3]
     result += newlist2
-    remain2 = list1[triple2 * 3:]
+    remain2 = list2[triple2 * 3:]
 
     triple3 = min(len(remain1),len(remain2))
     result3 = remain1[:triple3] + remain2[:triple3]
@@ -47,4 +48,4 @@ def answer(array):
     return max(answer,answer2)
 
 
-print answer([4,1,4,2,2])
+print answer([1,1,1,4,4,2,2])
