@@ -17,32 +17,38 @@ class Solution(object):
         while fast.next and fast.next.next:
             slow = slow.next
             fast = fast.next.next
-        head1 = head
-        head2 = slow.next
-        slow.next = None
-        head1 = self.sortList(head1)
-        head2 = self.sortList(head2)
-        head = self.merge(head1, head2)
+        right = slow.next
+        left = head
+        slow.next = None  # use slow and fast cursor to split into 2 parts
+        left = self.sortList(left)
+        right = self.sortList(right)
+        head = self.merge(left, right)
         return head
 
-    def merge(self, head1, head2):
-        if head1 == None:
-            return head2
-        if head2 == None:
-            return head1
-        result = ListNode(0)
+    def merge(self, left, right):
+        if left == None:
+            return right
+        if right == None:
+            return left
+        # O(1) space, insert right into left
+        if left.val <= right.val:
+            result = left
+            left = left.next
+        else:
+            result = right
+            right = right.next
         tmp = result
-        while head1 and head2:
-            if head1.val <= head2.val:
-                tmp.next = head1
-                head1 = head1.next
+        while left and right:
+            if left.val <= right.val:
+                tmp.next = left
+                left = left.next
                 tmp = tmp.next
             else:
-                tmp.next = head2
-                head2 = head2.next
+                tmp.next = right
+                right = right.next
                 tmp = tmp.next
-        if head1 == None:
-            tmp.next = head2
-        if head2 == None:
-            tmp.next = head1
-        return result.next
+        if left == None:
+            tmp.next = right
+        if right == None:
+            tmp.next = left
+        return result
