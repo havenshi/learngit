@@ -39,4 +39,4 @@ def answer(array):
     return max(answer,answer2)   # compare result or result2 is greater
 
 
-print answer([1,1,1,4,4,2,2,2])
+print answer([1,1,1,4,4,2,2])
