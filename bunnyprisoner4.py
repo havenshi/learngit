@@ -17,7 +17,9 @@ def find1(n,k):
     if k <= 1:
         return 0
     if k == 3:
-        return (n-2-1)/2
+        if n <= 5:
+            return 0
+        return (n-2-1-2-1)/2+1
     result = 0
     start = 2
     while start + (k-3) < (n - 1 - (start+start+(k-3))*(k-2)/2):
@@ -25,5 +27,5 @@ def find1(n,k):
         start += 1
     return result
 
-
-print bunny(9)
+print find1(7,3)
+print bunny(12)
