@@ -6,7 +6,6 @@ def bunny(n):
             if i == 1 or i == 2:
                 matrix[i][j] = 1
             matrix[i][j] = matrix[i][j - i] + (matrix[i - 1][j - 1] - find1(j - 1, i - 1))  # dp[n][k] = dp[n - k][k] + (dp[n - 1][k - 1] - find1[n - 1][k - 1])
-    print matrix
     return sum([matrix[i][n] for i in range(2, n/2+1) if matrix[i][n] > 0])
 
 def find1(n,k):
@@ -26,6 +25,3 @@ def find1(n,k):
         result += ((n - 1 - (start+start+(k-3))*(k-2)/2) - (start + (k-3)) + 1)/2
         start += 1
     return result
-
-print find1(7,3)
-print bunny(12)
