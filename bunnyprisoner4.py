@@ -1,30 +1,27 @@
+# -*- coding:utf8 -*-
+
 def bunny(n):
-    matrix = [[0 for j in range(n+1)] for i in range(n/2+2)]
-    matrix[1][1] = 1
-    for i in range(1, n/2+2):
-        for j in range(i+1, n+1):
-            if i == 1 or i == 2:
-                matrix[i][j] = 1
-            matrix[i][j] = matrix[i][j - i] + (matrix[i - 1][j - 1] - find1(j - 1, i - 1))  # dp[n][k] = dp[n - k][k] + (dp[n - 1][k - 1] - find1[n - 1][k - 1])
-    return sum([matrix[i][n] for i in range(2, n/2+2)])
+    k = 2
+    total = 0
+    while k <= int(pow(n * 2, 0.5)):
+        total += method(n, k)
+        k += 1
+    return total
 
-def find1(n,k):
-    if n == 0 or n == 1 and k >= 2 or n == 2 and k == 2:
+def method(n, k):
+    remain = n - (1 + k) * k / 2  # 确保每个盒子不为空，且已递增为1-4
+    if remain < 0:
         return 0
-    if n == 1 and k == 1 or n > 2 and k == 2:
+    if remain == 0:  # remain=0，只有1-k这一种情况
         return 1
-    if k <= 1:
-        return 0
-    if k == 3:
-        if n <= 5:
-            return 0
-        return (n-2-1-2-1)/2+1
-    result = 0
-    start = 2
-    while start + (k-3) < (n - 1 - (start+start+(k-3))*(k-2)/2):
-        result += ((n - 1 - (start+start+(k-3))*(k-2)/2) - (start + (k-3)) + 1)/2
-        start += 1
-    return result
+    l = [i for i in range(1, k + 1)]  # [1, 2, 3, 4]含义为撒1个球的方法：1,1,1,1; 0,1,1,1;0,0,1,1;0,0,0,1.
+    return dp_increament(l, remain)
 
-
+def dp_increament(nums, target):
+    matrix = [1] + [0] * target
+    for i in nums:
+        for j in range(1, target+1):
+            if j >= i:
+                matrix[j] += matrix[j-i]
+    return matrix[target]
 print bunny(200)

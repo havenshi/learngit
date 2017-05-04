@@ -1,22 +1,29 @@
-def merge_sort(ary):
-    if len(ary) <= 1:
-        return ary
-    num = int(len(ary)/2)
-    left = merge_sort(ary[:num])
-    right = merge_sort(ary[num:])
-    return merge(left,right)
+# -*- coding: utf-8 -*-
 
-def merge(left,right):
-    l,r = 0,0
+def combinationSum(candidates, target):
+    """
+    :type candidates: List[int]
+    :type target: int
+    :rtype: List[List[int]]
+    """
+    global result
     result = []
-    while l<len(left) and r<len(right) :
-        if left[l] < right[r]:
-            result.append(left[l])
-            l += 1
-        else:
-            result.append(right[r])
-            r += 1
-    result += left[l:]
-    result += right[r:]
+    candidates.sort()
+    for i in range(len(candidates)):
+       recursive_comb([candidates[i]], candidates[i:], target)
     return result
-print merge_sort([1,3,2,5,6,4])
+
+
+def recursive_comb(temp_array, rest_array, target):
+    if sum(temp_array) == target:
+        if temp_array not in result:
+            result.append(temp_array)
+    else:
+        for i in range(len(rest_array)):
+            temp_array2 = temp_array[:]
+            temp_array2.append(rest_array[i])
+            if sum(temp_array2) <= target:
+                recursive_comb(temp_array2, rest_array[i:], target)
+
+
+print combinationSum([2, 3, 6, 7], 7)

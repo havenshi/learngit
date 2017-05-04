@@ -9,12 +9,14 @@ class Solution(object):
             return head
         cur = head
         while cur:
+            pre = cur
             tmp = cur.next
             while tmp:
                 if tmp.val == cur.val:
-                    cur.next = cur.next.next
-                    tmp = cur.next
+                    pre.next = pre.next.next
+                    tmp = pre.next
                 else:
+                    pre = tmp
                     tmp = tmp.next
             cur = cur.next
 
@@ -24,18 +26,17 @@ class Solution(object):
 
 if __name__ == '__main__':
     head = Node(1)
-    head.next = Node(2)
-    head = head.next
-    head.next = Node(2)
-    head = head.next
-    head.next = Node(3)
-    head = head.next
-    head.next = Node(1)
-    head = head.next
-    head.next = Node(2)
-    head = head.next
+    tmp = head
+    tmp.next = Node(2)
+    tmp = tmp.next
+    tmp.next = Node(2)
+    tmp = tmp.next
+    tmp.next = Node(3)
+    tmp = tmp.next
+    tmp.next = Node(1)
+    tmp = tmp.next
+    tmp.next = Node(2)
+    tmp = tmp.next
     answer = Solution()
     print answer.remove(head)
-
-
 

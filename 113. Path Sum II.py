@@ -14,9 +14,9 @@ class Solution(object):
         """
         if root == None:
             return []
-        result = []
-        self.dfs(root, result, tmp=[], target=sum)
-        return result
+        _result = []
+        self.dfs(root, _result, tmp=[], target=sum)
+        return _result
 
     def dfs(self, node, result, tmp, target):
         tmp.append(node.val)
