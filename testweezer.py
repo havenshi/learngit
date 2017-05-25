@@ -68,7 +68,16 @@ def get_I_minus_Q(mat):
         for j in range(Q_size):
             mat[i][j] = mat_b[i][j] - mat[i][j]
 
-    return mat
+    mat_2 = []
+    for i in range(Q_size):
+        line_sum = sum(mat[i])
+        if line_sum != 0 or line_sum.numerator != 0:
+            mat_2.append(mat[i][:])
+        else:
+            mat_2.append([0] * Q_size)
+            mat_2[i][i] = 1
+
+    return mat_2
 
 
 def inverse_IQ(mat):
