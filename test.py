@@ -119,30 +119,6 @@ def answer(m):
             break
         if i == len(m) - 1:
             return [0, 0]
-    flag = False
-    for i in range(len(m)):
-        for j in range(len(m)):
-            if m[i][j] != 0:
-                if sum(m[j]) == 0:
-                    flag = True
-            if flag:
-                break
-    if flag is False:
-        return [0, 0]
-    check_list = [0]
-    visited = []
-    while check_list:
-        current = check_list.pop()
-        visited.append(current)
-        for i in range(len(m)):
-            if m[current][i] != 0 and i not in visited:
-                check_list.append(i)
-    flag = False
-    for i in visited:
-        if sum(m[i]) == 0:
-            flag = True
-    if flag is False:
-        return [0, 0]
 
     frac_mat = convert_matrix(m)
 
@@ -167,9 +143,7 @@ def answer(m):
     for i in range(len(F_R_result)):
         new.append(F_R_result[i].numerator * common / F_R_result[i].denominator)
     return new + [sum(new)]
-test1 = [[0, 1, 0, 0, 0, 1], [4, 0, 0, 3, 2, 0], [0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0]]
-test2 = [[0,1],[0,0]]
-test3 = [[0,1,0], [1,0,0], [0,0,0]]
-test4 = [[0,1,1,0,0], [1,0,0,0,0], [0,1,0,0,0], [0,0,0,0,1],[0,0,0,0,0]]
+
+test1 = [[0, 1, 0, 0, 0, 1], [4, 0, 0, 3, 2, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
 print answer(test1)
