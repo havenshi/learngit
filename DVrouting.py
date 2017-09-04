@@ -77,7 +77,7 @@ def dv(center, nodes, vertices, edges, weights, paths):
 
 # main function
 print "==================================================="
-print "\nCS6543 Link State Routing Simulator\n"
+print "\nCS6543 Distance Vector Routing Simulator\n"
 print "1.Read Existing Network Topology File"
 print "2.Add a New Node"
 print "3.Calculate Shortest Path to Destination Router"
@@ -94,7 +94,7 @@ while command != 4:
     command = input("\nCommand: ")
 
     if command == 1:  # upload file
-        f = open('data.txt', 'r')  # read data from file and write into matrix
+        f = open('data3.txt', 'r')  # read data from file and write into matrix
         matrix = json.loads(f.read())
 
         n = len(matrix)
