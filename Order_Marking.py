@@ -33,6 +33,7 @@ class MarkingPositionMonitor:
         symbol = self.__message__['symbol']
         self.order[order_id] = ('SELL', quantity, symbol, remaining)
         self.markingPosition[symbol] = self.markingPosition.get(symbol, 0) - quantity
+        return self.markingPosition[symbol]
 
     def newBuy_event(self):
         order_id = self.__message__['order_id']
@@ -85,7 +86,7 @@ class MarkingPositionMonitor:
             return  0
         else:
             side, quantity, symbol, remaining = self.order[order_id]
-        return self.markingPosition[symbol]
+            return self.markingPosition[symbol]
 
     def fill(self):
         order_id = self.__message__['order_id']
