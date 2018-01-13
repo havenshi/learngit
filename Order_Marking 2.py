@@ -29,8 +29,9 @@ class MarkingPositionMonitor:
 
     def on_event(self, message):
         message_dict = json.loads(message)
+        type = message_dict["type"]
 
-        if message_dict["type"] == "NEW":
+        if type == "NEW":
             symbol = message_dict["symbol"]
             order_id = message_dict["order_id"]
             self.order_dict[order_id] = message_dict
@@ -46,7 +47,7 @@ class MarkingPositionMonitor:
             return self.marking_dict[symbol].own - self.marking_dict[symbol].sell
 
 
-        if message_dict["type"] == "ORDER_ACK":
+        if type == "ORDER_ACK":
             order_id = message_dict["order_id"]
             historical_order = self.order_dict[order_id]
             symbol = historical_order["symbol"]
@@ -58,7 +59,7 @@ class MarkingPositionMonitor:
             return self.marking_dict[symbol].own - self.marking_dict[symbol].sell
 
 
-        if message_dict["type"] == "ORDER_REJECT":
+        if type == "ORDER_REJECT":
             # read the history order message detail from order_id
             order_id = message_dict["order_id"]
             historical_order = self.order_dict[order_id] # get the info of former order
@@ -73,7 +74,7 @@ class MarkingPositionMonitor:
 
 
 
-        if message_dict["type"] == "CANCEL":
+        if type == "CANCEL":
             # try to cancel stated; no immediate effect.
             order_id = message_dict["order_id"]
             historical_order = self.order_dict[order_id]
@@ -87,7 +88,7 @@ class MarkingPositionMonitor:
 
             return 0
 
-        if message_dict["type"] == "CANCEL_ACK":
+        if type == "CANCEL_ACK":
             # cancellation acknowledged; the order is no longer in the market; immediate effect.
             order_id = message_dict["order_id"]
             historical_order = self.order_dict[order_id]
@@ -102,7 +103,7 @@ class MarkingPositionMonitor:
 
             return 0
 
-        if message_dict["type"] == "CANCEL_REJECT":
+        if type == "CANCEL_REJECT":
             # reject cancellation; no effect.
             order_id = message_dict["order_id"]
             historical_order = self.order_dict[order_id]
@@ -116,7 +117,7 @@ class MarkingPositionMonitor:
 
             return 0
 
-        if message_dict["type"] == "FILL":
+        if type == "FILL":
             order_id = message_dict["order_id"]
             historical_order = self.order_dict[order_id]
             symbol = historical_order["symbol"]
@@ -133,6 +134,7 @@ class MarkingPositionMonitor:
                 return self.marking_dict[symbol].own - self.marking_dict[symbol].sell
 
             return 0
+
         return 0
 
 
