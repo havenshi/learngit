@@ -51,7 +51,7 @@ print bubble_sort2([1,3,2,5,6,4])
 # 以此类推，直到所有元素均排序完毕。
 def select_sort(arry):
     n = len(arry)
-    for i in range(0,n):
+    for i in range(n):
         min = i                             # 初始位置标记
         for j in range(i+1,n):
             if arry[j] < arry[min] :
