@@ -192,6 +192,15 @@ def max_heapify(ary,start,end):
 print heap_sort([1,3,2,5,6,4])
 
 
+# 直接用heapq
+# import heapq
+# nums = [1,3,2,5,6,4]
+# ans = []
+# while nums:
+#     cur = heapq.heappop(nums)
+#     ans.append(cur)
+# print ans
+
 # 来源http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/
 
 # https://cnbin.github.io/blog/2015/12/10/ji-chong-pai-xu-yi-ji-qi-shi-jian-fu-za-du/
