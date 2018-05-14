@@ -11,7 +11,7 @@ class Solution(object):
                 right = mid # Tip2:left或right直接等于mid即可，不用+-1
             else:
                 left = mid
-        if nums[left] == target: return left # Tip3:最后对比left和right两次
+        if nums[left] == target: return left # Tip3:最后对比left和right两次（当然要根据题目改写对比条件）
         if nums[right] == target: return right
 
 
