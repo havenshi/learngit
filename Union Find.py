@@ -115,3 +115,4 @@ for k in list:
 
 print "final id list is %s" % (",").join(str(x) for x in qf.id)
 print "count of components is: %d" % qf.count
+# test
